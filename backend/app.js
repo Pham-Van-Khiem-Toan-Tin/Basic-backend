@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const connect = require("./configs/db");
 // const route = require("./routers/router");
 const cors = require("cors");
+
 const app = express();
 require("dotenv").config();
 
@@ -19,6 +20,7 @@ app.use(bodyParse.json());
 app.use(morgan("dev"));
 
 connect();
+
 // route(app);
 app.get("/", (req, res) => {
   res.send("This is shop app");
