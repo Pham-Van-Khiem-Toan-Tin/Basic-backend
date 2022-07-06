@@ -31,10 +31,10 @@ class Auth {
     if (!name || !email || !password || !cPassword) {
       error = {
         ...error,
-        name: "Filed must not be empty",
-        email: "Filed must not be empty",
-        password: "Filed must not be empty",
-        cPassword: "Filed must not be empty",
+        name: "filled must not be empty",
+        email: "filled must not be empty",
+        password: "filled must not be empty",
+        cPassword: "filled must not be empty",
       };
       return res.json({ error });
     }

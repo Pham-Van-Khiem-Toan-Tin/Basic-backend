@@ -38,7 +38,7 @@ class Customize {
   async deleteSildeImage(req, res) {
     let { id } = req.body;
     if (!id) {
-      return res.json({ error: "All filed required" });
+      return res.json({ error: "All filled required" });
     } else {
       try {
         let deletedSlideImage = await customizeModel.findById(id);
