@@ -28,13 +28,19 @@ connect();
 
 app.use(morgan("dev"));
 app.use(cookieParser());
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-
+app.use("/api", authRouter);
+app.use("/api/user", userRouter);
+app.use("/api/category", categoryRouter);
+app.use("/api/product", productRouter);
+app.use("/api", braintreeRouter);
+app.use("/api/order", orderRouter);
+app.use("/api/customize", customizeRouter);
 
 app.listen(port, () => {
   console.log("App is connected by locallhost: " + port);

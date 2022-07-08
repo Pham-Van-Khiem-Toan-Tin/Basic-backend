@@ -1,19 +1,18 @@
 const userModel = require("../models/users");
 const bcrypt = require("bcryptjs");
-const { findByIdAndUpdate, findByIdAndDelete } = require("../models/users");
+const orderModel = require("../models/orders");
+
 
 class User {
   async getAllUser(req, res) {
     try {
       let User = await userModel
         .find({})
-        .populate("allProduct.id", "pName pImages pPrice")
-        .populate("user", "name email")
         .sort({ _id: -1 });
       if (User) {
         return res.json({ User });
       }
-    } catch (error) {
+    } catch (err) {
       console.log(err);
     }
   }
