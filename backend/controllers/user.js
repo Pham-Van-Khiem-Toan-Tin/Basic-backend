@@ -1,5 +1,5 @@
 const userModel = require("../models/users");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { findByIdAndUpdate, findByIdAndDelete } = require("../models/users");
 
 class User {

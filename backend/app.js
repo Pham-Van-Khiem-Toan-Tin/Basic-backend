@@ -20,7 +20,7 @@ const customizeRouter = require('./routers/customize');
 const orderRouter = require('./routers/orders');
 const userRouter = require('./routers/users');
 const CreateAllFolder = require("./configs/uploadFolderCreateScript");
-const cookieParser = require("cookie-parser");
+
 
 CreateAllFolder();
 

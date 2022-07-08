@@ -27,7 +27,7 @@ exports.isAuth = (req, res, next) => {
     next();
 };
 
-exports.isAdmin = (req, res, next) => {
+exports.isAdmin = async (req, res, next) => {
     try {
         let reqUser = await userModel.findById(req.body.loggedInUserId);
         if(reqUser.userRole === 0) {

@@ -1,5 +1,5 @@
 const { toTitleCase, validateEmail } = require("../configs/functionEmail");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const userModel = require("../models/users");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
