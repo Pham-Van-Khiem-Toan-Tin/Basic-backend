@@ -1,8 +1,7 @@
 const express = require("express");
-const bodyParse = require("body-parser");
 const morgan = require("morgan");
 const connect = require("./configs/db");
-// const route = require("./routers/router");
+const cookieParser =require('cookie-parser');
 const cors = require("cors");
 
 const app = express();
@@ -13,18 +12,29 @@ var corsOptions = {
   origin: process.env.CLIENT,
 };
 
-app.use(cors(corsOptions));
-app.use(express.static("public"));
-app.use(bodyParse.urlencoded({ extended: true }));
-app.use(bodyParse.json());
-app.use(morgan("dev"));
+const authRouter = require('./routers/auth');
+const categoryRouter = require('./routers/categories');
+const productRouter = require('./routers/products');
+const braintreeRouter = require('./routers/braintree');
+const customizeRouter = require('./routers/customize');
+const orderRouter = require('./routers/orders');
+const userRouter = require('./routers/users');
+const CreateAllFolder = require("./configs/uploadFolderCreateScript");
+const cookieParser = require("cookie-parser");
+
+CreateAllFolder();
 
 connect();
 
-// route(app);
-app.get("/", (req, res) => {
-  res.send("This is shop app");
-});
+app.use(morgan("dev"));
+app.use(cookieParser());
+app.use(cors(corsOptions));
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+
+
 
 app.listen(port, () => {
   console.log("App is connected by locallhost: " + port);

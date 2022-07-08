@@ -244,6 +244,23 @@ class Product {
       }
     }
   }
+  async getCartProduct(req, res) {
+    let { productArray } = req.body;
+    if (!productArray) {
+      return res.json({ error: "All filled must be required" });
+    } else {
+      try {
+        let cartProducts = await productModel.find({
+          _id: { $in: productArray },
+        });
+        if (cartProducts) {
+          return res.json({ Products: cartProducts });
+        }
+      } catch (err) {
+        return res.json({ error: "Cart product wrong" });
+      }
+    }
+  }
 
   async postAddReview(req, res) {
     let { pId, uId, rating, review } = req.body;
@@ -302,21 +319,20 @@ class Product {
   }
 
   async deleteReview(req, res) {
-    let {rId, pId} =req.body;
-    if(!rId) {
-      return res.json({message: 'All filled must be required'});
-    }
-    else {
+    let { rId, pId } = req.body;
+    if (!rId) {
+      return res.json({ message: "All filled must be required" });
+    } else {
       try {
         let reviewDelete = productModel.findByIdAndUpdate(pId, {
-          $pull: {pRatingsReviews: {_id: rId}},
+          $pull: { pRatingsReviews: { _id: rId } },
         });
         reviewDelete.exec((err, result) => {
-          if(err) {
+          if (err) {
             console.log(err);
           }
-          return res.json({success: 'Your review is deleted'});
-        })
+          return res.json({ success: "Your review is deleted" });
+        });
       } catch (err) {
         console.log(err);
       }
