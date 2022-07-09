@@ -55,17 +55,17 @@ class Auth {
         } else {
           try {
             password = bcrypt.hashSync(password, 10);
-            const data = await userModel.findOne({ email: eamil });
+            const data = await userModel.findOne({ email: email });
             if (data) {
               error = {
                 ...error,
                 password: "",
                 name: "",
-                eamil: "Email already exits",
+                email: "Email already exits",
               };
               return res.json(error);
             } else {
-              let newUser = userModel({
+              let newUser = new userModel({
                 name,
                 email,
                 password,

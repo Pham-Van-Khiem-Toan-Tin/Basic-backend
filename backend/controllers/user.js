@@ -8,6 +8,7 @@ class User {
     try {
       let User = await userModel
         .find({})
+        .select('name email')
         .sort({ _id: -1 });
       if (User) {
         return res.json({ User });
